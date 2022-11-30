@@ -1,4 +1,6 @@
 api_key.txt
+plots/*
+project_id_names.cache/*
 
 ### GITHUB DEFAULT
 # Byte-compiled / optimized / DLL files
