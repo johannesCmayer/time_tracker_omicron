@@ -23,8 +23,11 @@ for arg in sys.argv[1:]:
     else:
         if arg == 'show':
             os.system('eog -f "$HOME"/projects/time_tracker_omicron/plots/ &')
-        with socket.socket() as sock:
-            sock.connect((config['ip'], config['port']))
-            sock.send(arg.encode())
-            data = sock.recv(1024)
-            print(data.decode('UTF-8'))
+        try:
+            with socket.socket() as sock:
+                sock.connect((config['ip'], config['port']))
+                sock.send(arg.encode())
+                data = sock.recv(1024)
+                print(data.decode('UTF-8'))
+        except Exception as e:
+            os.system(f'notify-send "octr: Error" "{e}"')
