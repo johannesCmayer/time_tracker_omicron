@@ -1,0 +1,12 @@
+# Daily goals, given as [project_id, minutes]:
+"routine":
+  - !!python/tuple [186119188, 10] # reflect           
+  - !!python/tuple [163125865, 40] # meditate           
+  - !!python/tuple [165304788, 30] # sport
+  - !!python/tuple [163125846, 10] # Tulpa training
+  - !!python/tuple [168113610, 15] # steno 
+"AIA":
+  - !!python/tuple [165301785, 60] # AIA, original
+  - !!python/tuple [163125861, 25] # AIA, learn, math
+  - !!python/tuple [188252991, 25] # AIA, write
+  - !!python/tuple [169279766, 25] # AIA, learn, exsisting

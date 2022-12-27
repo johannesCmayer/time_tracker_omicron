@@ -133,3 +133,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 acc_7.pickle
+project_id_names_cache.cache/
