@@ -37,6 +37,8 @@ parser.add_argument('--render', action='store_true', dest="render",
                     help="Just render the plots.")
 parser.add_argument('--fetch', action='store_true', dest="fetch",
                     help="Just fetch new data.")
+parser.add_argument('--no-fullscreen', action='store_true', dest="no_fullscreen",
+                    help="Display the plots not in fullscreen.")
 args = parser.parse_args()
 
 with open("config.yaml", 'r') as f:
@@ -62,9 +64,10 @@ if args.prompt:
     args.goal_group = p.stdout.strip()
             
 valid_goal_groups = list(goals.keys()) + ['all']
-assert args.goal_group in valid_goal_groups, \
-    f"Not a valid goal group: {args.goal_group}\n" + \
-    f"Value must be one of {valid_goal_groups}."
+if args.goal_group not in valid_goal_groups:
+    msg = f"Got {args.goal_group} but value must be in {valid_goal_groups}."
+    os.system(f"notify-send 'Invalid input' '{msg}'")
+    raise Exception(msg)
 
 # TODO this is duplicated in server.ipynb. Refactor
 def project_color(project_id):
@@ -76,7 +79,8 @@ def restart_service():
 
 def main():
     if args.show:
-        os.system(f'eog -f "{project_dir}/plots/" &')
+        fullscreen_arg = '' if args.no_fullscreen else '-f'
+        os.system(f'eog {fullscreen_arg} "{project_dir}/plots/" &')
         time.sleep(0.1)
         
     if args.randomize_port:
